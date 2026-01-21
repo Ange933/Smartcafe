@@ -16,22 +16,22 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 
 ### Objectifs
 
-- Moderniser l'expérience client avec une interface mobile intuitive
-- Optimiser la gestion des commandes en temps réel
-- Améliorer l'efficacité opérationnelle du restaurant
-- Fournir des statistiques pour la prise de décision
+- Permettre au client de consulter le menu via QR code (app mobile)
+- Centraliser la prise de commande côté serveur (app web)
+- Simplifier la gestion des produits, tables et commandes
+- Afficher des statistiques simples du jour (total commandes et revenu)
 
 ---
 
 ## Acteurs du système
 
-### 1. Client (CUSTOMER)
+### 1. Client
 
 **Rôle** : Utilisateur final qui consulte le menu
 
 **Accès** :
-- Application mobile
-- Consultation du menu
+- Application mobile (sans compte)
+- Consultation du menu par catégories
 
 ### 2. Serveur (WAITER)
 
@@ -51,8 +51,8 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 **Accès** :
 - Toutes les fonctionnalités de WAITER
 - Gestion du menu (produits, catégories)
-- Gestion des utilisateurs
-- Statistiques avancées
+- Création de comptes serveurs
+- Statistiques simples du jour
 
 ---
 
@@ -60,18 +60,15 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 
 ### Authentification
 
-**Description** : Système de connexion sécurisé avec JWT
+**Description** : Connexion sécurisée avec JWT
 
 **Fonctionnalités** :
-- Inscription avec email/mot de passe
-- Connexion avec validation
+- Connexion avec email/mot de passe
 - Token JWT avec expiration
 - Déconnexion
 
 **Règles** :
-- Mot de passe minimum 6 caractères
 - Email unique dans le système
-- Token valide 7 jours par défaut
 
 ---
 
@@ -109,15 +106,10 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 **Description** : Vue d'ensemble de l'activité
 
 **Indicateurs affichés** :
-- Nombre total de commandes du jour
-- Commandes en attente
-- Commandes en préparation
-- Chiffre d'affaires du jour
-- Panier moyen
-- Commandes prêtes
-- Commandes livrées
+- Nombre total de commandes du jour (hors annulées)
+- Revenu du jour (commandes READY)
 
-**Rafraîchissement** : Manuel (bouton actualiser)
+**Rafraîchissement** : Automatique (toutes les 10 secondes)
 
 #### 2. Gestion des Produits
 
@@ -135,11 +127,7 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 - Description
 - Prix (€)
 - Catégorie
-- Image (URL)
 - Temps de préparation (minutes)
-- Allergènes (liste)
-- Végétarien (oui/non)
-- Vegan (oui/non)
 - Disponibilité (oui/non)
 
 **Validation** :
@@ -161,9 +149,10 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 **Champs** :
 - Nom
 - Description
-- Image
 - Ordre d'affichage
-- Actif/Inactif
+
+**Statut** :
+- Actif/Inactif (affichage)
 
 #### 4. Gestion des Commandes
 
@@ -172,25 +161,17 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 **Fonctionnalités** :
 - Liste des commandes
 - Filtrage par statut
-- Détails de commande
 - Mise à jour du statut
-- Recherche par numéro
 
 **Informations affichées** :
 - Numéro de commande
-- Date et heure
 - Client
 - Table
-- Liste des produits
-- Quantités
 - Total
 - Statut actuel
-- Notes spéciales
 
 **Actions possibles** :
-- Changer le statut
-- Voir les détails
-- Imprimer (futur)
+- Changer le statut : PREPARING, READY, CANCELLED
 
 #### 5. Gestion des Tables
 
@@ -199,8 +180,7 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 **Fonctionnalités** :
 - Vue en grille des tables
 - Changement de statut
-- Création de nouvelle table
-- Suppression de table
+- Prise de commande depuis une table (menu + panier)
 
 **Statuts** :
 - **Disponible** : Table libre
@@ -220,7 +200,7 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 
 1. **Arrivée au restaurant**
    - Le client s'installe à une table
-   - Ouverture de l'application mobile
+   - Scan d'un QR code pour ouvrir le menu
 
 2. **Consultation du menu**
    - Navigation par catégories
@@ -229,8 +209,7 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 
 3. **Commande** (via le serveur)
    - Le client fait sa commande oralement au serveur
-   - Le serveur crée la commande dans le système
-   - La commande est assignée au client
+   - Le serveur crée la commande dans l'application web
 
 4. **Service**
    - Le serveur prépare et sert la commande
@@ -243,13 +222,12 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 
 1. **Connexion**
    - Ouverture de l'application web
-   - Connexion avec identifiants (waiter@smartcafe.com)
+   - Connexion avec un compte serveur créé par l'admin
    - Accès au dashboard
 
 2. **Prise de commande client**
    - Le client donne sa commande oralement
-   - Le serveur crée la commande dans le système (via admin si nécessaire)
-   - Attribution de la commande au client
+   - Le serveur crée la commande depuis l'onglet Tables
 
 3. **Suivi des commandes**
    - Visualisation de toutes les commandes en cours
@@ -271,7 +249,7 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 1. **Connexion**
    - Ouverture de l'application web
    - Connexion avec identifiants admin (admin@smartcafe.com)
-   - Accès au dashboard complet
+   - Accès au dashboard
 
 2. **Gestion des catégories**
    - Visualisation de toutes les catégories
@@ -286,21 +264,18 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
    - Suppression de produits
    - Gestion des disponibilités (activer/désactiver)
 
-4. **Gestion des commandes** (tous les droits)
+4. **Gestion des commandes**
    - Visualisation de toutes les commandes
-   - Création de commandes pour les clients
    - Modification des statuts
-   - Consultation des détails et historique
 
 5. **Gestion des tables**
    - Consultation de toutes les tables
    - Changement de statut des tables
-   - Paramétrage des tables
 
 6. **Analyse et statistiques**
    - Dashboard avec mise à jour automatique
-   - Total des commandes du jour
-   - Revenu du jour
+   - Total des commandes du jour (hors annulées)
+   - Revenu du jour (READY)
 
 ---
 
@@ -311,10 +286,8 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 1. **Une commande doit contenir au moins un produit**
 2. **Le total est calculé automatiquement** (somme des prix × quantités)
 3. **Le numéro de commande est unique** (format : ORD-ANNÉE-TIMESTAMP)
-4. **Une commande ne peut être modifiée après validation**
-5. **Les produits indisponibles ne peuvent être commandés**
-6. **Le statut évolue dans cet ordre** : PENDING → PREPARING → READY → DELIVERED (ou CANCELLED)
-7. **Un client ne voit que ses propres commandes**
+4. **Les produits indisponibles ne peuvent être commandés**
+5. **Le statut évolue dans cet ordre** : PENDING → PREPARING → READY → DELIVERED (ou CANCELLED)
 
 ### Produits
 

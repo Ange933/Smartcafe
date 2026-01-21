@@ -17,7 +17,7 @@ services:
     networks:
       - smartcafe-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U smartcafe"]
+      test: ["CMD-SHELL", "pg_isready -U smartcafe -d smartcafe_db"]
       interval: 10s
       timeout: 5s
       retries: 5

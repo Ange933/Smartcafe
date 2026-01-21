@@ -88,8 +88,8 @@ L'application suit une **architecture client-serveur classique** avec séparatio
 
 | Technologie | Version | Rôle |
 |------------|---------|------|
-| React Native | 0.72+ | Framework mobile |
-| Expo | 49+ | Toolchain |
+| React Native | 0.76+ | Framework mobile |
+| Expo | 54+ | Toolchain |
 | TypeScript | 5.1+ | Langage typé |
 | React Navigation | 6.1+ | Navigation |
 | Axios | 1.6+ | Client HTTP |
@@ -147,9 +147,7 @@ smart-cafe/
 │
 ├── docs/                   # Documentation
 │   ├── DOCUMENTATION_FONCTIONNELLE.md
-│   ├── DOCUMENTATION_TECHNIQUE.md
-│   ├── API.md
-│   └── DATABASE.md
+│   └── DOCUMENTATION_TECHNIQUE.md
 │
 ├── docker-compose.yml      # Orchestration Docker
 └── README.md              # Documentation principale
@@ -199,7 +197,7 @@ Chaque module a une seule responsabilité :
 
 ```typescript
 // authController.ts - Gestion de l'authentification uniquement
-export const register = async (req, res) => { /* ... */ };
+export const registerWaiter = async (req, res) => { /* ... */ };
 export const login = async (req, res) => { /* ... */ };
 export const getProfile = async (req, res) => { /* ... */ };
 ```
@@ -334,8 +332,8 @@ api.interceptors.request.use(config => {
 **Tailwind CSS** pour un design moderne et responsive :
 
 ```tsx
-<div className="bg-white shadow rounded-lg p-6">
-  <h2 className="text-xl font-bold text-gray-900">
+<div className="bg-white/10 backdrop-blur-2xl border border-white/10 rounded-2xl p-6">
+  <h2 className="text-xl font-bold text-white">
     Titre
   </h2>
 </div>
@@ -361,9 +359,8 @@ Stack Navigator
 Utilisation des composants React Native :
 - `View` : conteneur
 - `Text` : texte
-- `TouchableOpacity` : boutons
-- `FlatList` : listes optimisées
-- `ScrollView` : défilement
+- `SectionList` : menu par catégories
+- `ActivityIndicator` : chargement
 
 ### Styling
 
@@ -457,14 +454,13 @@ const decoded = jwt.verify(token, JWT_SECRET);
 
 - **Backend** : Variable d'environnement `JWT_SECRET`
 - **Frontend** : `localStorage.setItem('token', token)`
-- **Mobile** : `AsyncStorage` (à implémenter)
 
 ### Mots de passe
 
 #### Hashage avec bcrypt
 
 ```typescript
-// Inscription
+// Création d'un compte serveur
 const hashedPassword = await bcrypt.hash(password, 10);
 
 // Connexion
@@ -754,24 +750,7 @@ bugfix/*    # Corrections
 
 ## Tests
 
-### À implémenter
-
-#### Backend
-```bash
-npm test
-```
-
-- Tests unitaires : Jest
-- Tests d'intégration : Supertest
-- Coverage : > 80%
-
-#### Frontend
-```bash
-npm test
-```
-
-- Tests composants : React Testing Library
-- Tests E2E : Cypress (optionnel)
+Aucun test automatisé n'a été implémenté dans ce projet.
 
 ---
 

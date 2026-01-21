@@ -266,7 +266,7 @@ export const getOrderStats = async (req: Request, res: Response): Promise<void> 
 
     const statsResult = await pool.query(`
       SELECT
-        SUM(CASE WHEN status IN ('READY', 'CANCELLED') THEN 1 ELSE 0 END) as total_orders,
+        SUM(CASE WHEN status != 'CANCELLED' THEN 1 ELSE 0 END) as total_orders,
         SUM(CASE WHEN status = 'PENDING' THEN 1 ELSE 0 END) as pending_orders,
         SUM(CASE WHEN status = 'PREPARING' THEN 1 ELSE 0 END) as preparing_orders,
         SUM(CASE WHEN status = 'READY' THEN 1 ELSE 0 END) as ready_orders,
