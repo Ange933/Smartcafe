@@ -15,7 +15,7 @@ Créez un fichier `.env` à la racine de `backend/` (ce fichier ne doit pas êtr
 ```env
 NODE_ENV=development
 PORT=3000
-DB_HOST=localhost
+DB_HOST=localhost  # en Docker : database
 DB_PORT=5432
 DB_NAME=smartcafe_db
 DB_USER=smartcafe
@@ -64,7 +64,7 @@ Note : pas déployé en production dans ce projet.
 - `GET /api/orders/stats/summary` - Statistiques (ADMIN/WAITER)
 - `GET /api/tables` - Liste des tables
 
-Voir [docs/API.md](../docs/API.md) pour la documentation complète.
+Pour les détails techniques, voir `docs/DOCUMENTATION_TECHNIQUE.md`.
 
 ## Technologies
 

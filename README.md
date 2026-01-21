@@ -1,15 +1,15 @@
 # Smart Café - Projet Restaurant de Luxe Connecté
 
-## 📋 Description du Projet
+## Description du Projet
 
-Smart Café est une solution complète de gestion de restaurant de luxe avec commande mobile. Le projet comprend :
+Smart Café est une solution complète de gestion de restaurant de luxe avec consultation mobile du menu. Le projet comprend :
 
 - **Application Web** : Interface de gestion pour le personnel (admin/serveurs)
-- **Application Mobile** : Application pour les clients pour passer commande
+- **Application Mobile** : Application pour les clients pour consulter le menu
 - **API Backend** : Services REST sécurisés
 - **Base de données** : PostgreSQL pour stocker toutes les données
 
-## 🏗️ Architecture du Projet
+## Architecture du Projet
 
 ```
 smart-cafe/
@@ -22,7 +22,7 @@ smart-cafe/
 └── docker-compose.yml # Orchestration des services
 ```
 
-## 🚀 Technologies Utilisées
+## Technologies Utilisées
 
 ### Backend
 - **Node.js** : Environnement d'exécution JavaScript
@@ -49,7 +49,7 @@ smart-cafe/
 - **Docker Compose** : Orchestration multi-conteneurs
 - **PostgreSQL** : Base de données en conteneur
 
-## 📦 Installation et Démarrage
+## Installation et Démarrage
 
 ### Prérequis
 
@@ -69,10 +69,8 @@ cd challenge
 docker-compose up -d
 ```
 
-⏱️ **Attendez 15-20 secondes** que tous les services démarrent complètement.
-
 3. **Vérifier que tout fonctionne**
-- **Frontend Web** : http://localhost:5173 👈 **Ouvrez cette URL dans votre navigateur**
+- **Frontend Web** : http://localhost:5173 
 - API Backend : http://localhost:3000
 - Base de données PostgreSQL : localhost:5432
 
@@ -97,12 +95,12 @@ docker-compose restart backend
 # Arrêter les services
 docker-compose down
 
-# Tout nettoyer et repartir à zéro (⚠️ efface les données)
+# Tout nettoyer et repartir à zéro (efface les données)
 docker-compose down -v
 docker-compose up -d
 ```
 
-## 📚 Structure de la Base de Données
+## Structure de la Base de Données
 
 ### Tables principales
 
@@ -111,11 +109,12 @@ docker-compose up -d
 3. **products** : Produits du menu
 4. **orders** : Commandes
 5. **order_items** : Détails des commandes
-6. **tables** : Tables du restaurant
+6. **restaurant_tables** : Tables du restaurant
+Note : **order_details** est une vue (pas une table) pour faciliter les requêtes.
 
-Voir `docs/DATABASE.md` pour plus de détails.
+Voir `database/init.sql` pour le schéma et les données de démonstration.
 
-## 🔐 Sécurité
+## Sécurité
 
 - Authentification JWT pour toutes les routes protégées
 - Mots de passe hashés avec bcrypt (10 rounds)
@@ -124,13 +123,13 @@ Voir `docs/DATABASE.md` pour plus de détails.
 - CORS configuré pour les origines autorisées
 - Variables d'environnement pour les secrets
 
-## 👥 Rôles Utilisateurs
+## Rôles Utilisateurs
 
 1. **ADMIN** : Gestion complète (produits, catégories, utilisateurs)
 2. **WAITER** : Gestion des commandes et tables
-3. **CUSTOMER** : Consultation du menu et passage de commandes
+3. **CUSTOMER** : Consultation du menu
 
-## 📱 Fonctionnalités
+## Fonctionnalités
 
 ### Application Web (Gérance)
 - Dashboard avec statistiques
@@ -141,33 +140,18 @@ Voir `docs/DATABASE.md` pour plus de détails.
 
 ### Application Mobile (Client)
 - Consultation du menu par catégorie
-- Panier de commande
-- Passage de commande
-- Suivi de commande
-- Profil utilisateur
 
-## 🧪 Tests
+## Tests
 
-```bash
-# Backend
-cd backend
-npm test
+Aucun test automatisé n'a été implémenté pour ce projet.
 
-# Frontend
-cd frontend
-npm test
-```
+## Documentation
 
-## 📖 Documentation
-
-- **[Guide de Démarrage](GUIDE_DEMARRAGE.md)** ⭐ Commencez ici !
+- **[Guide de Démarrage](GUIDE_DEMARRAGE.md)**
 - [Documentation Fonctionnelle](docs/DOCUMENTATION_FONCTIONNELLE.md)
 - [Documentation Technique](docs/DOCUMENTATION_TECHNIQUE.md)
-- [Guide Base de Données](docs/DATABASE.md)
-- [Guide API](docs/API.md)
-- [Guide de Dépannage](docs/TROUBLESHOOTING.md) 🔧 En cas de problème
 
-## 🎯 Bonnes Pratiques Appliquées
+## Bonnes Pratiques Appliquées
 
 ### Principes SOLID
 - **S**ingle Responsibility : Chaque classe/fonction a une seule responsabilité
@@ -179,23 +163,15 @@ npm test
 ### Autres Principes
 - **DRY** (Don't Repeat Yourself) : Pas de duplication de code
 - **KISS** (Keep It Simple, Stupid) : Solutions simples et claires
-- **Convention over Configuration** : Conventions de nommage cohérentes
-- **Separation of Concerns** : Séparation claire des responsabilités
 
-## 🌳 Utilisation de Git
 
-```bash
-# Branches principales
-main        # Production
-develop     # Développement
-feature/*   # Nouvelles fonctionnalités
-bugfix/*    # Corrections de bugs
-```
+## Utilisation de Git
 
-## 👨‍💻 Contributeurs
+Travail en solo :
+- Je travaille sur une branche dédiée.
+- Je pousse mes changements sur ma branche.
+- J'ouvre une merge request pour relecture.
+- Après validation, je merge dans `main`.
 
-Projet réalisé dans le cadre du Projet UF B3 DEV - Ynov Informatique
 
-## 📄 Licence
 
-Projet académique - Ynov Informatique 2026
