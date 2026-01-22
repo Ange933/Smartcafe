@@ -7,6 +7,7 @@
 3. [Fonctionnalités](#fonctionnalités)
 4. [Parcours utilisateurs](#parcours-utilisateurs)
 5. [Règles métier](#règles-métier)
+6. [Captures d'écran](#captures-décran)
 
 ---
 
@@ -310,6 +311,38 @@ Smart Café est une solution complète de gestion de restaurant de luxe. Le syst
 3. **Un client ne peut accéder qu'à l'app mobile**
 4. **Seuls ADMIN et WAITER accèdent à l'app web**
 5. **Seul ADMIN peut gérer les produits et catégories**
+
+---
+
+## Captures d'écran
+
+### Page de connexion
+
+![Page de connexion](./images/login.png)
+
+### Dashboard (Admin)
+
+![Dashboard](./images/dashboard.png)
+
+### Liste des catégories
+
+![Catégories](./images/categories.png)
+
+### Liste des produits
+
+![Produits](./images/produits.png)
+
+### Liste des commandes
+
+![Commandes](./images/commandes.png)
+
+### Liste des tables
+
+![Tables](./images/tables.png)
+
+### Mobile — menu
+
+![Menu mobile](./images/mobile-menu.png)
 
 ---
 
