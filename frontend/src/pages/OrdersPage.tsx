@@ -106,7 +106,6 @@ const OrdersPage = () => {
         >
           <option value="">Tous les statuts</option>
           <option value="PENDING">En attente</option>
-          <option value="PREPARING">En préparation</option>
           <option value="READY">Prêt</option>
           <option value="DELIVERED">Livré</option>
           <option value="CANCELLED">Annulé</option>
@@ -125,7 +124,7 @@ const OrdersPage = () => {
                       N° Commande
                     </th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Client
+                      Serveur
                     </th>
                     <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                       Table
@@ -168,13 +167,15 @@ const OrdersPage = () => {
                       <td className="whitespace-nowrap px-3 py-4 text-sm">
                         {canManage ? (
                           <select
-                            value={order.status}
+                            value=""
                             onChange={(e) =>
                               handleStatusChange(order.order_id, e.target.value)
                             }
                             className="text-sm rounded-md border-gray-300"
                           >
-                            <option value="PREPARING">En préparation</option>
+                            <option value="" disabled>
+                              Actions
+                            </option>
                             <option value="READY">Prêt</option>
                             <option value="CANCELLED">Annulé</option>
                           </select>
